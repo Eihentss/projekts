@@ -1,11 +1,13 @@
 <?php
 include "functions.php";
+$config=include "config.php";
+include "Database.php";
+
 echo "hi";
-$connection_string = "mysql:host=localhost;port=3306;dbname=blog_eihents;user=root;password=;charset=utf8mb4";
-$connection = new PDO($connection_string);
-$query=$connection->prepare("SELECT * FROM posts");
-$query->execute();
-$posts = $query->fetchAll(PDO::FETCH_ASSOC);
+$db = new Database($config);
+$posts = $db->execute("SELECT * FROM posts");
+
+
 echo "<h1>Posts</h1>";
 echo "<ol>";
 
