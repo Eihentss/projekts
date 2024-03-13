@@ -10,9 +10,10 @@ private $connection;
         $this->connection ->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
     }
 
-    public function execute($query_string){
+
+    public function execute($query_string, $params){
         $query=$this->connection->prepare($query_string);
-        $query->execute();
+        $query->execute($params);
         return $query->fetchAll();
     }
 }
